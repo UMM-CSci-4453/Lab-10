@@ -29,18 +29,18 @@ Because of CAP, most NoSQL database systems give up consistency (and thus ACID c
 Today we are going to begin our exploration of mongoDB.  This database is NOT a relational database, instead it is a document-oriented database "... designed for storing, retrieving, and managing document-oriented information...".  Instead of being designed around tables it is designed around the idea of a document (thanks Wikipedia).   And when I say document you really want to be thinking JSON object.
 
 We will use the javascript based shell.  You may start your mongoDB session with the command 
-```
+```sh
 mongo
 ```
 
 You may specify the database to which you wish to connect this way:
-```
+```sh
 mongo database_name
 ```
 
 However, this is a local connection.  You are going to want to connect to my mongo server.  Since I'm sharing an IP address that is visible to the outside world I am NOT going to make this repository public, and I hope that you don't share the address either:
 
-```
+```sh
  mongo 146.57.34.125:2111
 ```
 
@@ -52,7 +52,7 @@ You may see a couple of server warning messages... you can safely ignore them:
 
 This is a full-blown JavaScript interpreter that has a few extra goodies thrown in.  Let's play with that first by creating an object and reminding ourselves about how to interact with such things:
 
-```{js}
+```js
 var myobject={first: "Peter",
 	last: "Dolan",
 	age: 42,
@@ -81,12 +81,12 @@ There are two ways to access a property:
 
 Here's an example of dot notation:
 
-```{js}
+```js
 myobject.age
 ```
 
 And here's an example of bracket notation:
-```{js}
+```js
 myobject["age"]
 ```
 
@@ -112,7 +112,7 @@ The advantage of the bracket notation is that you can use a variable between the
 
 The hard brackets are also used to denote an array like the following:
 
-```{js}
+```js
 example = [1, 2, 3, "bob", false]
 ```
 Arrays in javascript are not strongly typed and you can mix and match contents to your heart's content.  Also, arrays are 0-based.  Make certain the contents of the screen capture below makes sense:
@@ -143,12 +143,12 @@ To see the current database use the command `db`.  Give it a try.
 
 The equivalent of `SHOW DATABASES` is 
 
-```{js}
+```js
 show dbs
 ```
 
 To change the default database (`USE <database>` in SQL-land)
-```{js}
+```js
 use <name>
 ```
 
@@ -166,7 +166,7 @@ row      | document
 
 So, to repeat, the equivalent of a table in mongoDB is a *collection* and the equivalent of a row is a JSON object (called a *document* in mongoDB).  Unlike SQL there is no fixed schema hence no need for an elaborate `CREATE TABLE` command.  To create a collection you need merely insert something into it.  What you insert is a document (in other words an object).    Let's do that, and do it in such a way that it also creates a database for you to use as your own:
 
-```{js}
+```js
 use <your SQL database name>
 db.books.insert({book: "Caves of Steel", author: "Isaac Asimov"})
 ```
@@ -175,7 +175,7 @@ db.books.insert({book: "Caves of Steel", author: "Isaac Asimov"})
 
 The equivalent of `SHOW TABLES` is 
 
-```{js}
+```js
 show collections
 ```
 
@@ -200,7 +200,7 @@ You don't have to add things that are identical to what I've shown-- but I want 
 
 Okay, if the collection 'books' is the analog of a table named books, then the equivalent of `SELECT * FROM BOOKS` is:
 
-```{js}
+```js
 db.books.find()
 ```
 
@@ -208,19 +208,19 @@ You will notice that a *new* property named `_id` has been added to every docume
 
 The equivalent of the `LIMIT n` clause from SQL (things like `SELECT * FROM books LIMIT 2`) is
 
-```{js}
+```js
 db.books.find().limit(2)
 ```
 
 There is a special method emulating the clause `LIMIT 1`:
 
-```{js}
+```js
 db.books.findOne()
 ```
 
 The method `.find()` can take an argument-- the argument is called a query object.  The mongoDB version of
 
-```{SQL}
+```sql
 SELECT * FROM books where book="Caves of Steel"
 ```
 
@@ -232,7 +232,7 @@ Give it a try with your own books collection.
 
 The second argument to .find() is an object that controls which properties are displayed.  A value of 1 means display and  a value of 0 means do NOT display.  (this matters because "_id" is always included unless specifically disallowed.  The SQL 
 
-```{SQL}
+```sql
 SELECT book FROM books
 ```
 
@@ -242,7 +242,7 @@ can be realized as
 
 You can replicate
 
-```{SQL}
+```sql
 SELECT * FROM books WHERE book IN (<list>)
 ```
 
