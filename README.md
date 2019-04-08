@@ -148,6 +148,7 @@ show dbs
 ```
 
 To change the default database (`USE <database>` in SQL-land)
+
 ```js
 use <name>
 ```
@@ -256,24 +257,24 @@ The key thing to notice is that the value associated to the property book is an 
 
 The expression $in is called an operator and there are quite a few of them.  Here is a link to a page containing several that allow us to emulate things like >, >=, <, <=, in, not in, etc:
 
-http://docs.mongodb.org/manual/reference/operator/query/
+<http://docs.mongodb.org/manual/reference/operator/query/>
 
-Now work through the [CRUD (Create, Read, Update, and Delete) tutorials](https://docs.mongodb.org/manual/tutorial/insert-documents/), starting the the given link and proceeding through to the one titled "Perform Two Phase Commits".  Be sure to **do the work in your own database** so that I can give you credit (this **may require you to make a few changes to the commands**).  **Each individual should do this** (although you are welcome to work together.  Pay close attention to what is an object and what is an array (especially in the part about `$or`).  Also, ctrl-J (sometimes repeated a few times) will lets you break-out of a command that you are in the middle of entering.  
+Now work through the [CRUD (Create, Read, Update, and Delete) tutorials](https://docs.mongodb.com/manual/crud/). Make sure you do the "sub" pages in the documentation (e.g., "Query an Array"). Stop when you get to "Bulk Write Operations" – we're not going to mess with that. Be sure to **do the work in your own database** so that I can give you credit. This **will require you to make a few changes to the commands**, since they refer to databases like `inventory`, which you do _not_ want to be manipulating. **Each individual should do this**, although you are welcome to work together.  Pay close attention to what is an object and what is an array (especially in the part about `$or`).  Also, ctrl-J (sometimes repeated a few times) will lets you break-out of a command that you are in the middle of entering.
 	
 You might find the idea of an *upsert* to be nice (particularly since it relates to a problem you had to solve when working on the node.js project)
 
 A few notes:
 
 * The difference between `.save()` and `.insert()` is that `.save()` will do an update if your provide the `_id` and a matching document is already in the collection, whereas `.insert()` will fail.
-* The tutorial on performing Two Phase Commits is really showing you the dirty details that are hidden by a database system that supports transactions.
+* We're not going to wade into this here, but MongoDB does support _transactions_ to ensure that complex actions are atom. Feel free to look at [the documentation on transactions](https://docs.mongodb.com/manual/core/transactions/) if you'd like to learn more.
 
 ## Reinforcement
 
 Finally, do this tutorial:
 
-http://openmymind.net/mongodb.pdf
+<http://openmymind.net/mongodb.pdf>
 
-This will probably take at least one lab.  Some of the material is a repeat, but the reinforcement will be helpful.
+This will probably take at least one lab. Some of the material is a repeat, but the reinforcement will be helpful. (It may look like a lot of pages, but many of them are almost entirely blank. You could probably compress it to something like 1/3 the pages if you wanted to.)
 
 ## To Do
 
@@ -285,6 +286,5 @@ This will probably take at least one lab.  Some of the material is a repeat, but
     * You should have at least 10 documents
     * It would be good to have some variety in your properties-- so not all the documents share the same properties
 * Do these tutorials:
-    * https://docs.mongodb.org/manual/core/crud-introduction/
-    * http://docs.mongodb.org/manual/tutorial/insert-documents/
-    * http://openmymind.net/mongodb.pdf
+    * <https://docs.mongodb.com/manual/crud/>
+    * <http://openmymind.net/mongodb.pdf>
